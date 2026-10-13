@@ -28,3 +28,14 @@
 **当前发布不包含模型或 LoRA 权重。** 本地选用的 12 个文件合计 58.19 GB。MiniMax H3 社区许可包含地区分发限制；部分转换 LoRA 来源和授权仍需核实，不能把这些权重统一标记为无限制开源文件。已确认来源的模型提供原始发布链接；未知来源明确留空。
 
 本包的工作台单元测试（13 项）和前端事件测试通过；未替用户重新运行完整视频生成。
+
+## LoRA 下载来源
+
+本工作流使用的 **Dasiwa Hybrid 和 10Eros curveproj1025 转换版由 T8（t8star）提供下载**：
+
+- [T8 / Dasiwa REF2VA Hybrid 转换版](https://huggingface.co/t8star/minimax_h3_turbo_v4_step600_ema_DasiwaREF2VAHybridV1_0_curveproj1025_compat_v001)
+- [T8 / 10Eros 四步加速转换版](https://huggingface.co/t8star/minimax_h3_turbo_4step_10ErosMax_test4_pruned_curveproj1025_T8)
+- [JOKER141 / Combat V2](https://huggingface.co/JOKER141/MiniMax-H3-Combat-Base-V2)
+- [JOKER141 / Motion Repair](https://huggingface.co/JOKER141/MiniMax-H3-General-Motion-Continuity-Repair)
+
+模型、编码器、VAE 及放大模型的提供方和放置目录见 [MODELS.json](MODELS.json)，插件来源见 [SOURCES.md](SOURCES.md)。LMS 和电影质感通用版的准确来源待核实。
