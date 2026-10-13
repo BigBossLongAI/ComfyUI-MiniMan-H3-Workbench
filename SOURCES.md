@@ -29,7 +29,13 @@ VideoHelperSuite (GPL-3.0), Latent Upscaler (MIT), and Audio Separation Nodes (M
 | 10Eros 四步 curveproj1025 EXP v001 转换版 | T8（t8star） | https://huggingface.co/t8star/minimax_h3_turbo_4step_10ErosMax_test4_pruned_curveproj1025_T8 |
 | H3_Combat_V2 | JOKER141 | https://huggingface.co/JOKER141/MiniMax-H3-Combat-Base-V2 |
 | Motion_Repair | JOKER141 | https://huggingface.co/JOKER141/MiniMax-H3-General-Motion-Continuity-Repair |
-| LMS r64_r | 尚未核实 | 待补充原发布页面 |
-| 电影质感 ComfyUI 通用版 | 尚未核实 | 待补充与本地文件对应的原发布页面 |
+| LMS r64_r | Alissonerdx（对应文件发布方） | https://huggingface.co/Alissonerdx/Minimax-H3-ComfyUI |
+| 电影质感 ComfyUI 通用版 | orangesouth（下载提供方，原训练作者未核实） | https://huggingface.co/orangesouth/MinimaxH3CinematicRealism |
 
 T8 在此标注为转换版本的下载提供方，不能据此认定全部原始训练权重均由 T8 制作。10Eros 模型卡将加速权重上游指向 larryvrh/MiniMax-H3-Turbo-Lora：https://huggingface.co/larryvrh/MiniMax-H3-Turbo-Lora 。提供下载页面不等于取得再分发授权，权重仍遵循各自及底模许可。
+
+## 完整核实结果
+
+全部 12 个权重的上游文件列表已核实，6 个 LoRA 与本机 SHA-256 一致。可直接下载的链接和名称差异见 [DOWNLOADS.md](DOWNLOADS.md)。
+
+Memory Cleanup 原仓库：https://github.com/LAOGOU-666/Comfyui-Memory_Cleanup 。已核实为 LAOGOU-666 提供，仓库和本机均未找到 LICENSE，因此保留下载来源而不重新上传源码。

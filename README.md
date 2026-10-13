@@ -25,7 +25,7 @@
 
 发布工作流已去掉私人参考素材、原提示词和生成成片记录。本机工作流及素材不被此包修改或删除。
 
-**当前发布不包含模型或 LoRA 权重。** 本地选用的 12 个文件合计 58.19 GB。MiniMax H3 社区许可包含地区分发限制；部分转换 LoRA 来源和授权仍需核实，不能把这些权重统一标记为无限制开源文件。已确认来源的模型提供原始发布链接；未知来源明确留空。
+**当前发布不包含模型或 LoRA 权重。** 本地选用的 12 个文件合计 58.19 GB。MiniMax H3 社区许可包含地区分发限制；部分权重再分发授权仍需核实，不能把这些权重统一标记为无限制开源文件。已确认来源的模型提供原始发布链接；未知来源明确留空。
 
 本包的工作台单元测试（13 项）和前端事件测试通过；未替用户重新运行完整视频生成。
 
@@ -38,4 +38,6 @@
 - [JOKER141 / Combat V2](https://huggingface.co/JOKER141/MiniMax-H3-Combat-Base-V2)
 - [JOKER141 / Motion Repair](https://huggingface.co/JOKER141/MiniMax-H3-General-Motion-Continuity-Repair)
 
-模型、编码器、VAE 及放大模型的提供方和放置目录见 [MODELS.json](MODELS.json)，插件来源见 [SOURCES.md](SOURCES.md)。LMS 和电影质感通用版的准确来源待核实。
+模型、编码器、VAE 及放大模型的提供方和放置目录见 [MODELS.json](MODELS.json)，插件来源见 [SOURCES.md](SOURCES.md)。LMS 和电影质感通用版已通过 SHA-256 核实，分别由 Alissonerdx 和 orangesouth 提供对应文件下载。
+
+完整的 12 个模型与 LoRA 下载直链、提供方、文件重命名说明及安装目录见 [DOWNLOADS.md](DOWNLOADS.md)。6 个 LoRA 已逐一通过 SHA-256 与上游对照；无需把来源不明的其他版本当作同一文件。

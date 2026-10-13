@@ -9,7 +9,11 @@
     "metadata": {
       "format": "pt"
     },
-    "provider": "FastVideo"
+    "provider": "FastVideo",
+    "upstream_filename": "diffusion_models/fastvideo_fasth3_8step_v2_pruned_nvfp4.safetensors",
+    "download_url": "https://huggingface.co/FastVideo/FastVideo-FastH3-8-Step-V2-NVFP4-Comfy/resolve/main/diffusion_models/fastvideo_fasth3_8step_v2_pruned_nvfp4.safetensors",
+    "upstream_sha256": "49371f21b546e59813984938a1b4fbea9348eb5003e07a01d48083efcc5a1d94",
+    "verification": "Upstream file listing verified"
   },
   {
     "filename": "minimax_h3_ref2va_pruned_int8_convrot.safetensors",
@@ -19,7 +23,11 @@
     "license_status": "MiniMax H3 Community License",
     "upload_status": "not_uploaded",
     "metadata": {},
-    "provider": "Comfy-Org (repackaging); MiniMaxAI (base model)"
+    "provider": "Comfy-Org (repackaging); MiniMaxAI (base model)",
+    "upstream_filename": "diffusion_models/minimax_h3_ref2va_pruned_int8_convrot.safetensors",
+    "download_url": "https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/diffusion_models/minimax_h3_ref2va_pruned_int8_convrot.safetensors",
+    "upstream_sha256": "9255f52b6677845ad238f20dfaafa94727053694127ab7f255c048f0f9365779",
+    "verification": "Upstream file listing verified"
   },
   {
     "filename": "qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors",
@@ -29,7 +37,11 @@
     "license_status": "Qwen upstream Apache-2.0; packaged variant terms require verification",
     "upload_status": "not_uploaded",
     "metadata": {},
-    "provider": "FastVideo"
+    "provider": "FastVideo",
+    "upstream_filename": "text_encoders/qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors",
+    "download_url": "https://huggingface.co/FastVideo/FastVideo-FastH3-8-Step-V2-NVFP4-Comfy/resolve/main/text_encoders/qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors",
+    "upstream_sha256": "35a88d51044231fe332301d7a62aa81e3f2cba62febeb446e2c1e3e0ef76f2c6",
+    "verification": "Upstream file listing verified"
   },
   {
     "filename": "minimax_h3_video_vae_int8_convrot.safetensors",
@@ -41,7 +53,11 @@
     "metadata": {
       "minimax_h3_video_vae": "{\"latents_mean\": [0.858090341091156, -0.9606591463088989, 1.0661640167236328, -0.5090325474739075, -0.2727581858634949, -1.3675414323806763, -0.2553254961967468, -0.26907554268836975, -0.5376840829849243, -0.0464097298681736, 0.6657370328903198, 0.19690127670764923, -0.5460608005523682, -0.4035342037677765, -0.23683024942874908, 0.25928452610969543, -0.30133944749832153, 0.211341992020607, -1.1206848621368408, 0.3581933379173279, -0.04225143790245056, 0.2604829967021942, 0.22864092886447906, 0.7056031823158264], \"latents_std\": [1.2223774194717407, 1.2767263650894165, 1.6831774711608887, 1.7549455165863037, 1.5636216402053833, 2.194143533706665, 0.9653137922286987, 1.0569885969161987, 0.841948926448822, 0.7729952931404114, 1.8955937623977661, 0.946841835975647, 0.7996809482574463, 0.44988900423049927, 0.7197399735450745, 0.6936293244361877, 2.961095094680786, 2.7694199085235596, 3.0496184825897217, 2.1088054180145264, 3.276226282119751, 3.1627357006073, 2.2816812992095947, 2.6127843856811523], \"vae_clip_length\": 17, \"vae_token_drop\": 3, \"source_config\": {\"_class_name\": \"AutoencoderKLLegacy\", \"_diffusers_version\": \"0.32.2\", \"causal_decoder\": false, \"causal_encoder\": true, \"ch\": 128, \"ch_mult\": [1, 2, 2, 4, 4, 8], \"embed_dim\": 24, \"in_channels\": 3, \"num_res_blocks\": 2, \"num_res_blocks_decoder\": null, \"out_ch\": 3, \"padding_mode\": \"reflect\", \"padding_mode_t\": null, \"pixel_norm_type\": \"imagenet\", \"scaling_factor\": 1.0, \"shift_factor\": 0.0, \"space_down\": [2, 2, 2, 2, 1, 1], \"space_up\": [1, 2, 2, 2, 2, 1], \"time_down\": [1, 2, 2, 1, 1, 1], \"time_up\": null, \"use_3d_conv\": true, \"use_t_isolated_gn\": true, \"use_vit_decoder\": true, \"vae_ratio\": 16, \"vae_ratio_t\": 4, \"vit_decoder_kwargs\": {\"dim_head\": 64, \"ffn_activation_fn\": \"silu\", \"ffn_use_gated\": true, \"heads\": 32, \"norm_affine\": true, \"norm_type\": \"rms_norm\", \"num_layers\": 36, \"qk_norm_affine\": false, \"qk_norm_type\": \"rms_norm\", \"rope_dim_ratio\": 0.75, \"rope_theta\": 100.0}, \"z_channels\": 24, \"zq_ch_decoder\": null, \"zq_ch_encoder\": null}}"
     },
-    "provider": "FastVideo"
+    "provider": "FastVideo",
+    "upstream_filename": "vae/minimax_h3_video_vae_int8_convrot.safetensors",
+    "download_url": "https://huggingface.co/FastVideo/FastVideo-FastH3-8-Step-V2-NVFP4-Comfy/resolve/main/vae/minimax_h3_video_vae_int8_convrot.safetensors",
+    "upstream_sha256": "52a2c8c73583c86e4f41cdcce3a6ad0ea562987bc0bf3d60a0cef5f5c8e60c0e",
+    "verification": "Upstream file listing verified"
   },
   {
     "filename": "minimax_h3_audio_vae_fp32.safetensors",
@@ -53,7 +69,11 @@
     "metadata": {
       "minimax_h3_audio_vae": "{\"latents_mean\": [-0.020211687488382354, 0.3876466479950502, -0.04398279799186767, -0.28591514936373, 0.08179686214561671, -0.35782641352446604, 0.040623809960919084, -0.01552534501956604, -0.223362481667332, 0.1821006842509091, 0.2941778783780663, -0.07901167601970885, -0.056815072777201, -0.3699028221860095, -0.31616315591624855, 0.5905951377425391, -0.052139568068853864, 0.013673160263486295, -0.03691647864630577, 0.09732660653298163, -0.3394662328788498, -0.30685677538541667, -0.24504598907458763, -0.034698524462007344, 0.02868032184767538, -0.21217779266454084, -0.1678263169941987, 0.3221287889040614, -0.1223055851554907, 0.4356604928128464, -0.0502599202236253, 0.3979258376211797], \"latents_std\": [1.6895524230479284, 2.76263727217653, 1.7945344281264435, 1.6801681847309828, 1.6390226546605453, 2.7788298348882177, 1.7659090095747236, 1.6199757612137327, 2.6336525640336896, 1.8539356672817833, 2.5056497896915633, 1.811019237886178, 1.9579657790720237, 1.6685498243529284, 1.4922469314453364, 3.298670198067373, 1.9491804496832168, 1.8720003270431442, 1.8334080103291832, 1.6488070416529093, 1.6176957696319716, 1.9131449234774398, 1.5695245398428617, 1.6943659940415912, 1.8318420762504692, 1.5540637421583379, 1.9344930328968526, 1.599198216109855, 1.718045989838149, 1.6307219190837705, 1.8661226051202384, 1.5613768203168363], \"sample_rate\": 32000, \"latent_channels\": 32, \"output_channel\": 2, \"kwargs\": {\"attn_proj\": true, \"decoder_dim\": 1024, \"decoder_rates\": [5, 5, 2, 2, 2, 2, 2], \"decoder_type\": \"bigvgan\", \"encoder_dim\": 64, \"encoder_rates\": [2, 4, 4, 5, 5], \"latent_dim\": 2048, \"sample_rate\": 32000, \"vae_latent_channels\": 32}}"
     },
-    "provider": "Comfy-Org (repackaging); MiniMaxAI (base model)"
+    "provider": "Comfy-Org (repackaging); MiniMaxAI (base model)",
+    "upstream_filename": "vae/minimax_h3_audio_vae_fp32.safetensors",
+    "download_url": "https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/vae/minimax_h3_audio_vae_fp32.safetensors",
+    "upstream_sha256": "8e505d95dd1561d47abd43d4238fd40d9bb1ae9e147ed0a4cba778d76ae4db48",
+    "verification": "Upstream file listing verified"
   },
   {
     "filename": "minimax_h3_latent_upscaler_3d_conv_v1_fp16.safetensors",
@@ -63,7 +83,11 @@
     "license_status": "Apache-2.0",
     "upload_status": "not_uploaded",
     "metadata": {},
-    "provider": "LBH-123-AI"
+    "provider": "LBH-123-AI",
+    "upstream_filename": "minimax_h3_latent_upscaler_3d_conv_v1/minimax_h3_latent_upscaler_3d_conv_v1_fp16.safetensors",
+    "download_url": "https://huggingface.co/LBH-123-AI/Minimax_h3_latent_Upscaler/resolve/main/minimax_h3_latent_upscaler_3d_conv_v1/minimax_h3_latent_upscaler_3d_conv_v1_fp16.safetensors",
+    "upstream_sha256": "043e5a48e161610ef6c3ea974645220354d06fa618abca15f76d084812eb55c2",
+    "verification": "Upstream file listing verified"
   },
   {
     "filename": "H3_Combat_V2.safetensors",
@@ -83,7 +107,12 @@
       "sshs_legacy_hash": "b8ca1c17",
       "software": "{\"name\": \"ai-toolkit\", \"repo\": \"https://github.com/ostris/ai-toolkit\", \"version\": \"1.18.1\"}"
     },
-    "provider": "JOKER141"
+    "provider": "JOKER141",
+    "upstream_filename": "H3_Combat_V2.safetensors",
+    "download_url": "https://huggingface.co/JOKER141/MiniMax-H3-Combat-Base-V2/resolve/main/H3_Combat_V2.safetensors",
+    "upstream_sha256": "5b3edb09e9d6029439badf9bc9db4ba4a355ae679b0810888de82c4793c0bac8",
+    "verification": "SHA-256 exact match",
+    "local_sha256": "5b3edb09e9d6029439badf9bc9db4ba4a355ae679b0810888de82c4793c0bac8"
   },
   {
     "filename": "minimax_h3_turbo_v4_step600_ema_DasiwaREF2VAHybridV1_0_curveproj1025_compat_v001.safetensors",
@@ -128,7 +157,12 @@
       "stored_native4_module_max_relative_error": "0.000591576189564",
       "projected_A_dtype": "bfloat16"
     },
-    "provider": "T8 / t8star"
+    "provider": "T8 / t8star",
+    "upstream_filename": "minimax_h3_turbo_v4_step600_ema_DasiwaREF2VAHybridV1_0_curveproj1025_compat_v001.safetensors",
+    "download_url": "https://huggingface.co/t8star/minimax_h3_turbo_v4_step600_ema_DasiwaREF2VAHybridV1_0_curveproj1025_compat_v001/resolve/main/minimax_h3_turbo_v4_step600_ema_DasiwaREF2VAHybridV1_0_curveproj1025_compat_v001.safetensors",
+    "upstream_sha256": "a117f18682a22a0381cadd9832da0afe9912f604305b3e44310b5aa1919734cc",
+    "verification": "SHA-256 exact match",
+    "local_sha256": "a117f18682a22a0381cadd9832da0afe9912f604305b3e44310b5aa1919734cc"
   },
   {
     "filename": "minimax_h3_turbo_4step_10ErosMax_test4_pruned_curveproj1025_exp_v001-T8.safetensors",
@@ -173,7 +207,12 @@
       "projected_adaln_count": "51",
       "adapter_count": "259"
     },
-    "provider": "T8 / t8star"
+    "provider": "T8 / t8star",
+    "upstream_filename": "minimax_h3_turbo_4step_10ErosMax_test4_pruned_curveproj1025_exp_v001-T8.safetensors",
+    "download_url": "https://huggingface.co/t8star/minimax_h3_turbo_4step_10ErosMax_test4_pruned_curveproj1025_T8/resolve/main/minimax_h3_turbo_4step_10ErosMax_test4_pruned_curveproj1025_exp_v001-T8.safetensors",
+    "upstream_sha256": "6c2f38d45dfa3fc282a48de3171b6946a5e6d46e13f832c43b93734f6d12edf5",
+    "verification": "SHA-256 exact match",
+    "local_sha256": "6c2f38d45dfa3fc282a48de3171b6946a5e6d46e13f832c43b93734f6d12edf5"
   },
   {
     "filename": "Motion_Repair.safetensors",
@@ -193,14 +232,19 @@
       "ss_base_model_version": "minimax_h3",
       "version": "1.0"
     },
-    "provider": "JOKER141"
+    "provider": "JOKER141",
+    "upstream_filename": "Motion_Repair.safetensors",
+    "download_url": "https://huggingface.co/JOKER141/MiniMax-H3-General-Motion-Continuity-Repair/resolve/main/Motion_Repair.safetensors",
+    "upstream_sha256": "a678a3657cefd5c2c2712f892da2f71be53c3f252e335557e918854f8abc579f",
+    "verification": "SHA-256 exact match",
+    "local_sha256": "a678a3657cefd5c2c2712f892da2f71be53c3f252e335557e918854f8abc579f"
   },
   {
     "filename": "minimax_h3_lms_v1.0_r64_r.safetensors",
     "install_folder": "models/loras",
     "bytes": 1239664536,
-    "source_url": "",
-    "license_status": "Unverified; do not redistribute yet",
+    "source_url": "https://huggingface.co/Alissonerdx/Minimax-H3-ComfyUI",
+    "license_status": "MiniMax H3 upstream license; no unrestricted redistribution grant",
     "upload_status": "not_uploaded",
     "metadata": {
       "sshs_legacy_hash": "de2f2560",
@@ -213,14 +257,19 @@
       "ss_output_name": "minimax_h3_ref2va_sharpness",
       "ss_base_model_version": "minimax_h3_ref2va"
     },
-    "provider": "尚未核实"
+    "provider": "Alissonerdx（文件发布方）；RunningHubAI/T8star-Aix 提供同系列镜像",
+    "upstream_filename": "loras/minimax_h3_lms_v1.0_r64.safetensors",
+    "download_url": "https://huggingface.co/Alissonerdx/Minimax-H3-ComfyUI/resolve/main/loras/minimax_h3_lms_v1.0_r64.safetensors",
+    "upstream_sha256": "16f3195bc6bffa431c0598dc2031e520ba058b4fcbc9f104db9e3fdfdeacf60c",
+    "verification": "SHA-256 exact match",
+    "local_sha256": "16f3195bc6bffa431c0598dc2031e520ba058b4fcbc9f104db9e3fdfdeacf60c"
   },
   {
     "filename": "Minimax H3真实电影质感V0.1_ComfyUI通用版.safetensors",
     "install_folder": "models/loras",
     "bytes": 309965208,
-    "source_url": "",
-    "license_status": "Unverified; do not redistribute yet",
+    "source_url": "https://huggingface.co/orangesouth/MinimaxH3CinematicRealism",
+    "license_status": "No explicit redistribution license found; download from source",
     "upload_status": "not_uploaded",
     "metadata": {
       "sshs_legacy_hash": "413a5182",
@@ -233,6 +282,11 @@
       "name": "电影镜头",
       "software": "{\"name\": \"ai-toolkit\", \"repo\": \"https://github.com/ostris/ai-toolkit\", \"version\": \"0.12.3\"}"
     },
-    "provider": "尚未核实"
+    "provider": "orangesouth（下载提供方；原训练作者未核实）",
+    "upstream_filename": "Minimax H3真实电影质感V0.1.safetensors",
+    "download_url": "https://huggingface.co/orangesouth/MinimaxH3CinematicRealism/resolve/main/Minimax%20H3%E7%9C%9F%E5%AE%9E%E7%94%B5%E5%BD%B1%E8%B4%A8%E6%84%9FV0.1.safetensors",
+    "upstream_sha256": "51dda79218ea126cbb2e08f3a6d9cc595e2224f4977d7618061954043a8bafcf",
+    "verification": "SHA-256 exact match",
+    "local_sha256": "51dda79218ea126cbb2e08f3a6d9cc595e2224f4977d7618061954043a8bafcf"
   }
 ]
