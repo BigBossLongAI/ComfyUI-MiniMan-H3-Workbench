@@ -5,6 +5,7 @@ from comfy_extras.nodes_resolution import ASPECT_RATIOS
 from comfy_extras.nodes_minimax_h3 import MiniMaxH3ReferenceToVideo
 
 from .graph import DEFAULTS, THIRD_LORAS, build_graph, reference_fingerprint
+from .person_swap import SWAP_DEFAULTS, build_person_swap_graph
 
 WEB_DIRECTORY = "./web"
 
@@ -93,9 +94,42 @@ class MiniManH3Workbench(io.ComfyNode):
         return reference_fingerprint(reference_files)
 
 
+class MiniManH3PersonSwapWorkbench(io.ComfyNode):
+    @classmethod
+    def define_schema(cls):
+        schema = MiniManH3Workbench.define_schema()
+        names = {"prompt", "seed", "first_mp", "first_steps", "second_pass",
+                 "second_steps", "second_mp", "third_pass", "third_steps", "third_mp", "filename_prefix", "reference_files", "first_model", "third_model", "clip_name",
+                 "video_vae", "audio_vae", "upscale_model", "sampler_name", "scheduler", "attention",
+                 "upscale_device", "upscale_precision", "sparse_attention", "keep_percent", "chunk_tokens", "shift_video", "shift_audio", "crf"}
+        names.update(f"{prefix}_{name}" for name, _, _ in THIRD_LORAS for prefix in ("lora", "strength"))
+        schema.inputs = [item for item in schema.inputs if item.id in names]
+        for item in schema.inputs:
+            if item.id in SWAP_DEFAULTS and hasattr(item, "default"):
+                item.default = SWAP_DEFAULTS[item.id]
+        schema.inputs.extend([
+            io.Combo.Input("sam_model", display_name="人物分割模型", options=folder_paths.get_filename_list("checkpoints"), default=SWAP_DEFAULTS["sam_model"], advanced=True),
+            io.Combo.Input("lora_swap", display_name="人物替换 LoRA", options=["None", *folder_paths.get_filename_list("loras")], default=SWAP_DEFAULTS["lora_swap"], advanced=True),
+            io.Float.Input("strength_swap", display_name="LoRA 强度", default=1.0, min=-100, max=100, step=0.01, advanced=True),
+        ])
+        schema.node_id = "MiniManH3PersonSwapWorkbench"
+        schema.display_name = "H3 极简人物替换三采工作台"
+        schema.description = "视频、一张人物参考图和提示词；保留原视频声音，支持三阶段采样。"
+        return schema
+
+    @classmethod
+    def execute(cls, **settings):
+        graph, result = build_person_swap_graph(display_id=cls.hidden.unique_id, **settings)
+        return io.NodeOutput(*result, expand=graph)
+
+    @classmethod
+    def fingerprint_inputs(cls, reference_files=DEFAULTS["reference_files"], **kwargs):
+        return reference_fingerprint(reference_files)
+
+
 class MiniManH3Extension(ComfyExtension):
     async def get_node_list(self):
-        return [MiniManH3Workbench, MiniManH3ReferenceEncode]
+        return [MiniManH3Workbench, MiniManH3PersonSwapWorkbench, MiniManH3ReferenceEncode]
 
 
 async def comfy_entrypoint():
