@@ -44,11 +44,19 @@ app.registerExtension({
                 }
                 this.widgets_start_y = 10;
             };
+            let workbenchHeight = 1088.5574520335479;
             const hideWidgets = () => {
+                let addedPreview = false;
                 layoutReferenceInputs();
                 for (const widget of this.widgets) {
                     if (widget.name === "miniman_panel") continue;
-                    if (!nodeData.input.required[widget.name] && widget.name !== "control_after_generate" && widget.name !== "videopreview") continue;
+                    const preview = ["videopreview", "vhslatentpreview", "$$canvas-image-preview"].includes(widget.name);
+                    if (!nodeData.input.required[widget.name] && widget.name !== "control_after_generate" && !preview) continue;
+                    if (preview && !widget.hidden) addedPreview = true;
+                    if (preview && widget.options) {
+                        widget.options.getMinHeight = () => 0;
+                        widget.options.getMaxHeight = () => 0;
+                    }
                     widget.type = "hidden";
                     widget.hidden = true;
                     widget.computeSize = () => [0, -4];
@@ -59,6 +67,7 @@ app.registerExtension({
                         if (host) { host.style.display = "none"; host.style.height = "0px"; }
                     }
                 }
+                if (addedPreview && this.size[1] !== workbenchHeight) this.setSize([this.size[0], workbenchHeight]);
             };
             hideWidgets();
             const widget = this.addDOMWidget("miniman_panel", "div", panel.element, {
@@ -205,6 +214,7 @@ app.registerExtension({
             const configure = this.onConfigure;
             this.onConfigure = function () {
                 const value = configure?.apply(this, arguments);
+                workbenchHeight = this.size[1];
                 removeVideoAudioInputs();
                 hideWidgets();
                 panel.sync();
@@ -223,6 +233,8 @@ app.registerExtension({
                 if (!this.properties?.minimanFinalVideo) showOutput(app.nodeOutputs?.[this.id]);
                 this.imgs = null;
                 const value = draw?.apply(this, arguments);
+                hideWidgets();
+                this.imgs = null;
                 panel.refresh();
                 return value;
             };
