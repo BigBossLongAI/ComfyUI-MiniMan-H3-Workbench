@@ -1,0 +1,226 @@
+[
+  {
+    "filename": "fastvideo_fasth3_8step_v2_pruned_nvfp4.safetensors",
+    "install_folder": "models/diffusion_models",
+    "bytes": 13612462670,
+    "source_url": "https://huggingface.co/FastVideo/FastVideo-FastH3-8-Step-V2-NVFP4-Comfy",
+    "license_status": "MiniMax H3 Community License",
+    "upload_status": "not_uploaded",
+    "metadata": {
+      "format": "pt"
+    }
+  },
+  {
+    "filename": "minimax_h3_ref2va_pruned_int8_convrot.safetensors",
+    "install_folder": "models/diffusion_models",
+    "bytes": 20970379616,
+    "source_url": "https://huggingface.co/Comfy-Org/MiniMax-H3",
+    "license_status": "MiniMax H3 Community License",
+    "upload_status": "not_uploaded",
+    "metadata": {}
+  },
+  {
+    "filename": "qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors",
+    "install_folder": "models/text_encoders",
+    "bytes": 15687142551,
+    "source_url": "https://huggingface.co/FastVideo/FastVideo-FastH3-8-Step-V2-NVFP4-Comfy",
+    "license_status": "Qwen upstream Apache-2.0; packaged variant terms require verification",
+    "upload_status": "not_uploaded",
+    "metadata": {}
+  },
+  {
+    "filename": "minimax_h3_video_vae_int8_convrot.safetensors",
+    "install_folder": "models/vae",
+    "bytes": 3171670912,
+    "source_url": "https://huggingface.co/FastVideo/FastVideo-FastH3-8-Step-V2-NVFP4-Comfy",
+    "license_status": "MiniMax H3 Community License",
+    "upload_status": "not_uploaded",
+    "metadata": {
+      "minimax_h3_video_vae": "{\"latents_mean\": [0.858090341091156, -0.9606591463088989, 1.0661640167236328, -0.5090325474739075, -0.2727581858634949, -1.3675414323806763, -0.2553254961967468, -0.26907554268836975, -0.5376840829849243, -0.0464097298681736, 0.6657370328903198, 0.19690127670764923, -0.5460608005523682, -0.4035342037677765, -0.23683024942874908, 0.25928452610969543, -0.30133944749832153, 0.211341992020607, -1.1206848621368408, 0.3581933379173279, -0.04225143790245056, 0.2604829967021942, 0.22864092886447906, 0.7056031823158264], \"latents_std\": [1.2223774194717407, 1.2767263650894165, 1.6831774711608887, 1.7549455165863037, 1.5636216402053833, 2.194143533706665, 0.9653137922286987, 1.0569885969161987, 0.841948926448822, 0.7729952931404114, 1.8955937623977661, 0.946841835975647, 0.7996809482574463, 0.44988900423049927, 0.7197399735450745, 0.6936293244361877, 2.961095094680786, 2.7694199085235596, 3.0496184825897217, 2.1088054180145264, 3.276226282119751, 3.1627357006073, 2.2816812992095947, 2.6127843856811523], \"vae_clip_length\": 17, \"vae_token_drop\": 3, \"source_config\": {\"_class_name\": \"AutoencoderKLLegacy\", \"_diffusers_version\": \"0.32.2\", \"causal_decoder\": false, \"causal_encoder\": true, \"ch\": 128, \"ch_mult\": [1, 2, 2, 4, 4, 8], \"embed_dim\": 24, \"in_channels\": 3, \"num_res_blocks\": 2, \"num_res_blocks_decoder\": null, \"out_ch\": 3, \"padding_mode\": \"reflect\", \"padding_mode_t\": null, \"pixel_norm_type\": \"imagenet\", \"scaling_factor\": 1.0, \"shift_factor\": 0.0, \"space_down\": [2, 2, 2, 2, 1, 1], \"space_up\": [1, 2, 2, 2, 2, 1], \"time_down\": [1, 2, 2, 1, 1, 1], \"time_up\": null, \"use_3d_conv\": true, \"use_t_isolated_gn\": true, \"use_vit_decoder\": true, \"vae_ratio\": 16, \"vae_ratio_t\": 4, \"vit_decoder_kwargs\": {\"dim_head\": 64, \"ffn_activation_fn\": \"silu\", \"ffn_use_gated\": true, \"heads\": 32, \"norm_affine\": true, \"norm_type\": \"rms_norm\", \"num_layers\": 36, \"qk_norm_affine\": false, \"qk_norm_type\": \"rms_norm\", \"rope_dim_ratio\": 0.75, \"rope_theta\": 100.0}, \"z_channels\": 24, \"zq_ch_decoder\": null, \"zq_ch_encoder\": null}}"
+    }
+  },
+  {
+    "filename": "minimax_h3_audio_vae_fp32.safetensors",
+    "install_folder": "models/vae",
+    "bytes": 605254808,
+    "source_url": "https://huggingface.co/Comfy-Org/MiniMax-H3",
+    "license_status": "MiniMax H3 Community License",
+    "upload_status": "not_uploaded",
+    "metadata": {
+      "minimax_h3_audio_vae": "{\"latents_mean\": [-0.020211687488382354, 0.3876466479950502, -0.04398279799186767, -0.28591514936373, 0.08179686214561671, -0.35782641352446604, 0.040623809960919084, -0.01552534501956604, -0.223362481667332, 0.1821006842509091, 0.2941778783780663, -0.07901167601970885, -0.056815072777201, -0.3699028221860095, -0.31616315591624855, 0.5905951377425391, -0.052139568068853864, 0.013673160263486295, -0.03691647864630577, 0.09732660653298163, -0.3394662328788498, -0.30685677538541667, -0.24504598907458763, -0.034698524462007344, 0.02868032184767538, -0.21217779266454084, -0.1678263169941987, 0.3221287889040614, -0.1223055851554907, 0.4356604928128464, -0.0502599202236253, 0.3979258376211797], \"latents_std\": [1.6895524230479284, 2.76263727217653, 1.7945344281264435, 1.6801681847309828, 1.6390226546605453, 2.7788298348882177, 1.7659090095747236, 1.6199757612137327, 2.6336525640336896, 1.8539356672817833, 2.5056497896915633, 1.811019237886178, 1.9579657790720237, 1.6685498243529284, 1.4922469314453364, 3.298670198067373, 1.9491804496832168, 1.8720003270431442, 1.8334080103291832, 1.6488070416529093, 1.6176957696319716, 1.9131449234774398, 1.5695245398428617, 1.6943659940415912, 1.8318420762504692, 1.5540637421583379, 1.9344930328968526, 1.599198216109855, 1.718045989838149, 1.6307219190837705, 1.8661226051202384, 1.5613768203168363], \"sample_rate\": 32000, \"latent_channels\": 32, \"output_channel\": 2, \"kwargs\": {\"attn_proj\": true, \"decoder_dim\": 1024, \"decoder_rates\": [5, 5, 2, 2, 2, 2, 2], \"decoder_type\": \"bigvgan\", \"encoder_dim\": 64, \"encoder_rates\": [2, 4, 4, 5, 5], \"latent_dim\": 2048, \"sample_rate\": 32000, \"vae_latent_channels\": 32}}"
+    }
+  },
+  {
+    "filename": "minimax_h3_latent_upscaler_3d_conv_v1_fp16.safetensors",
+    "install_folder": "models/latent_upscale_models",
+    "bytes": 690592672,
+    "source_url": "https://huggingface.co/LBH-123-AI/Minimax_h3_latent_Upscaler",
+    "license_status": "Apache-2.0",
+    "upload_status": "not_uploaded",
+    "metadata": {}
+  },
+  {
+    "filename": "H3_Combat_V2.safetensors",
+    "install_folder": "models/loras",
+    "bytes": 155110280,
+    "source_url": "https://huggingface.co/JOKER141/MiniMax-H3-Combat-Base-V2",
+    "license_status": "Upstream card and base license require verification",
+    "upload_status": "not_uploaded",
+    "metadata": {
+      "name": "doV2_copy",
+      "version": "1.0",
+      "ss_base_model_version": "minimax_h3",
+      "training_info": "{\"step\": 2000, \"epoch\": 25}",
+      "ss_output_name": "doV2_copy",
+      "format": "pt",
+      "sshs_model_hash": "3cf92c17c19fda838e83a4fcc1070fcf44a70a83835e93ef9ee2b5dd36bb03a2",
+      "sshs_legacy_hash": "b8ca1c17",
+      "software": "{\"name\": \"ai-toolkit\", \"repo\": \"https://github.com/ostris/ai-toolkit\", \"version\": \"1.18.1\"}"
+    }
+  },
+  {
+    "filename": "minimax_h3_turbo_v4_step600_ema_DasiwaREF2VAHybridV1_0_curveproj1025_compat_v001.safetensors",
+    "install_folder": "models/loras",
+    "bytes": 794888704,
+    "source_url": "",
+    "license_status": "Unverified; do not redistribute yet",
+    "upload_status": "not_uploaded",
+    "metadata": {
+      "compatible_main_sha256": "a095e78b394126bb6708d5e01eeecce3e4a6c37bd164ba7f0e9c64c792f312b8",
+      "adapter_count": "259",
+      "stored_native4_aggregate_relative_error": "0.00010818685284",
+      "comfyui_commit": "cf10c5c398ad4297b664e7aa85090daaee529f29",
+      "bias_diff_count": "51",
+      "conversion_inferred_metadata": "sampler_steps=4,dtype=bfloat16,format=pt",
+      "conversion_source_sha256": "34e275674fd3af2e4620a9c8ba29de5e601072a1d281bb73cd3d26270610f22c",
+      "format": "pt",
+      "curve_width": "8",
+      "compatible_main_file": "DasiwaMinimaxH3_dasiwaREF2VAHybridV1_0.safetensors",
+      "compatible_base": "exact curve-pruned checkpoint SHA256 a095e78b394126bb6708d5e01eeecce3e4a6c37bd164ba7f0e9c64c792f312b8",
+      "curve_grid_size": "1025",
+      "conversion_tool": "convert_minimax_h3_turbo_for_pruned_curve.py",
+      "time_embedder_reference_file": "minimax_h3_ref2va_bf16.safetensors",
+      "application": "W_eff = W + lora_B @ lora_A; bias_eff = bias + diff_b",
+      "sampler_steps": "4",
+      "conversion_source_file": "minimax_h3_turbo_v4_step600_ema_comfyui.safetensors",
+      "conversion_algorithm": "adaln_curve_affine_lstsq_pinv1025_with_diff_b",
+      "adaln_t_table_raw_sha256": "d960b90f1792c0ebe6e9970f7d84dc1a3796fd9a823c9f95a0f34cf3f73aac35",
+      "direct_adapter_count": "208",
+      "time_embedder_reference_sha256": "e32c54c1a7b4f5f397f195cea267ccb18806303bb665678c4bee60953bdf3026",
+      "tensor_count": "569",
+      "validation_status": "static_projection_validated; perceptual_render_pending",
+      "dtype": "bfloat16",
+      "conversion_metadata_normalizer": "task_scoped_official_v4_step600_ema_verification",
+      "base_model": "MiniMax-H3",
+      "projected_adaln_count": "51",
+      "comfyui_key_prefix": "diffusion_model.",
+      "compatibility_scope": "exact_checkpoint_sha256_only",
+      "comfyui_loader": "Load LoRA (Bypass, Model Only) (for debugging)",
+      "diff_b_dtype": "float32",
+      "stored_dense_aggregate_relative_error": "6.35106347496e-05",
+      "stored_native4_module_max_relative_error": "0.000591576189564",
+      "projected_A_dtype": "bfloat16"
+    }
+  },
+  {
+    "filename": "minimax_h3_turbo_4step_10ErosMax_test4_pruned_curveproj1025_exp_v001-T8.safetensors",
+    "install_folder": "models/loras",
+    "bytes": 794888696,
+    "source_url": "",
+    "license_status": "Unverified; do not redistribute yet",
+    "upload_status": "not_uploaded",
+    "metadata": {
+      "conversion_source_file": "minimax_h3_turbo_4步加速_comfyui.safetensors",
+      "compatible_base": "exact curve-pruned checkpoint SHA256 f82cc3f723b080e7ae94a7c98f95aa989e387618d0bdc940133dfbd9f432c062",
+      "validation_status": "static_projection_validated; perceptual_render_pending",
+      "incompatible_base": "MiniMax-H3 pruned_* (AdaLN input is 8, LoRA input is 2688)",
+      "application": "W_eff = W + lora_B @ lora_A; bias_eff = bias + diff_b",
+      "conversion_algorithm": "adaln_curve_affine_lstsq_pinv1025_with_diff_b",
+      "compatible_main_sha256": "f82cc3f723b080e7ae94a7c98f95aa989e387618d0bdc940133dfbd9f432c062",
+      "curve_grid_size": "1025",
+      "comfyui_commit": "cbbc9dab1f03d0d9a6caa8a8be7d77a7e37e1e44",
+      "time_embedder_reference_file": "minimax_h3_fl2va_int8_convrot.safetensors",
+      "projected_A_dtype": "bfloat16",
+      "sampler_steps": "4",
+      "hash_modifier_time": "1785989307",
+      "direct_adapter_count": "208",
+      "base_model": "MiniMax-H3",
+      "bias_diff_count": "51",
+      "comfyui_loader": "Load LoRA (Bypass, Model Only) (for debugging)",
+      "time_embedder_reference_sha256": "7ad4c73e6e378b822ffd1629f27f632d3787d95f5e468e3af958f98c58df96a5",
+      "conversion_source_sha256": "35946f9f2957c2766e28b627c88169535249dd07a3040ce3c2c8c99951fdbc7b",
+      "tensor_count": "569",
+      "hash_modifier_nonce": "0d4b26afaf9866375982dffb22d77b8899bfb0d967c343ead850ce6ab65dbacb",
+      "conversion_tool": "convert_minimax_h3_turbo_for_pruned_curve.py",
+      "dtype": "bfloat16",
+      "stored_native4_module_max_relative_error": "0.000585406031124",
+      "diff_b_dtype": "float32",
+      "format": "pt",
+      "curve_width": "8",
+      "adaln_t_table_raw_sha256": "ac8727cdec52137c73878d004de5bd2a0e19227e8311e29ab3b68f328310e34e",
+      "stored_dense_aggregate_relative_error": "9.57254641275e-05",
+      "compatible_main_file": "10Eros_Max_h3_fl2va_bf16_test4_pruned.safetensors",
+      "comfyui_key_prefix": "diffusion_model.",
+      "stored_native4_aggregate_relative_error": "0.000158860779747",
+      "projected_adaln_count": "51",
+      "adapter_count": "259"
+    }
+  },
+  {
+    "filename": "Motion_Repair.safetensors",
+    "install_folder": "models/loras",
+    "bytes": 155110272,
+    "source_url": "",
+    "license_status": "Unverified; do not redistribute yet",
+    "upload_status": "not_uploaded",
+    "metadata": {
+      "ss_output_name": "UFC",
+      "format": "pt",
+      "sshs_legacy_hash": "8b0b5b3c",
+      "software": "{\"name\": \"ai-toolkit\", \"repo\": \"https://github.com/ostris/ai-toolkit\", \"version\": \"1.18.3\"}",
+      "training_info": "{\"step\": 1600, \"epoch\": 17}",
+      "name": "UFC",
+      "sshs_model_hash": "3da8458aafa21ec26f5a0f364a1efa6b8fb180db6141822fcbb8beda4d1f3683",
+      "ss_base_model_version": "minimax_h3",
+      "version": "1.0"
+    }
+  },
+  {
+    "filename": "minimax_h3_lms_v1.0_r64_r.safetensors",
+    "install_folder": "models/loras",
+    "bytes": 1239664536,
+    "source_url": "",
+    "license_status": "Unverified; do not redistribute yet",
+    "upload_status": "not_uploaded",
+    "metadata": {
+      "sshs_legacy_hash": "de2f2560",
+      "format": "pt",
+      "name": "minimax_h3_ref2va_sharpness",
+      "software": "{\"name\": \"ai-toolkit\", \"repo\": \"https://github.com/ostris/ai-toolkit\", \"version\": \"0.13.4\"}",
+      "training_info": "{\"step\": 4000, \"epoch\": 10}",
+      "sshs_model_hash": "bffd85a4d219bef71bd593eb51e629b43ca44ac2f72b371a10c643d56af97ce5",
+      "version": "1.0",
+      "ss_output_name": "minimax_h3_ref2va_sharpness",
+      "ss_base_model_version": "minimax_h3_ref2va"
+    }
+  },
+  {
+    "filename": "Minimax H3真实电影质感V0.1_ComfyUI通用版.safetensors",
+    "install_folder": "models/loras",
+    "bytes": 309965208,
+    "source_url": "",
+    "license_status": "Unverified; do not redistribute yet",
+    "upload_status": "not_uploaded",
+    "metadata": {
+      "sshs_legacy_hash": "413a5182",
+      "version": "1.0",
+      "sshs_model_hash": "b343d7d5bcbc82fdbb406f84a2038664802476bd625efd9a20e7c7255907b8a0",
+      "ss_base_model_version": "minimax_h3",
+      "ss_output_name": "电影镜头",
+      "training_info": "{\"step\": 19000, \"epoch\": 127}",
+      "format": "pt",
+      "name": "电影镜头",
+      "software": "{\"name\": \"ai-toolkit\", \"repo\": \"https://github.com/ostris/ai-toolkit\", \"version\": \"0.12.3\"}"
+    }
+  }
+]
