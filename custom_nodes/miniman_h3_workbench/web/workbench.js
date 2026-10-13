@@ -11,7 +11,7 @@ api.dispatchCustomEvent = function (type, detail) {
 app.registerExtension({
     name: "MiniMan.H3.Workbench",
     beforeRegisterNodeDef(nodeType, nodeData) {
-        if (nodeData.name !== "MiniManH3Workbench") return;
+        if (!["MiniManH3Workbench", "MiniManH3PersonSwapWorkbench"].includes(nodeData.name)) return;
         const created = nodeType.prototype.onNodeCreated;
         nodeType.prototype.onNodeCreated = function () {
             const result = created?.apply(this, arguments);
@@ -25,7 +25,10 @@ app.registerExtension({
             });
             const removeVideoAudioInputs = () => {
                 for (let index = (this.inputs?.length || 0) - 1; index >= 0; index--) {
-                    if (this.inputs[index].name.startsWith("ref_video_audios.")) this.removeInput(index);
+                    const name = this.inputs[index].name;
+                    const removedSwapInput = nodeData.name === "MiniManH3PersonSwapWorkbench"
+                        && ["seconds", "aspect_ratio"].includes(name) && !nodeData.input.required[name];
+                    if (name.startsWith("ref_video_audios.") || removedSwapInput) this.removeInput(index);
                 }
             };
             removeVideoAudioInputs();
@@ -214,11 +217,31 @@ app.registerExtension({
             const configure = this.onConfigure;
             this.onConfigure = function () {
                 const value = configure?.apply(this, arguments);
+                const settings = arguments[0]?.widgets_values_named;
+                if (settings) for (const widget of this.widgets) {
+                    if (Object.hasOwn(settings, widget.name)) widget.value = settings[widget.name];
+                }
+                for (const widget of this.widgets) {
+                    const definition = nodeData.input.required[widget.name];
+                    if (definition && ["FLOAT", "INT"].includes(definition[0]) && (widget.value === "" || widget.value == null)) {
+                        widget.value = definition[1].default;
+                    }
+                }
                 workbenchHeight = this.size[1];
                 removeVideoAudioInputs();
                 hideWidgets();
                 panel.sync();
                 if (this.properties?.minimanFinalVideo) showOutput({images: [this.properties.minimanFinalVideo]});
+                return value;
+            };
+            const serialize = this.onSerialize;
+            this.onSerialize = function (data) {
+                const value = serialize?.apply(this, arguments);
+                data.properties ||= {};
+                delete data.properties.minimanSettings;
+                data.widgets_values_named = Object.fromEntries(this.widgets
+                    .filter(widget => nodeData.input.required[widget.name] || widget.name === "control_after_generate")
+                    .map(widget => [widget.name, widget.value]));
                 return value;
             };
             const resize = this.onResize;

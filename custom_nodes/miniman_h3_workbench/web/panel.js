@@ -1,7 +1,8 @@
 export function createWorkbenchPanel(node, transport) {
     const widgets = new Map(node.widgets.map(widget => [widget.name, widget]));
+    const personSwap = widgets.has("sam_model");
     const root = document.createElement("div");
-    root.className = "mmh3-panel";
+    root.className = personSwap ? "mmh3-panel mmh3-person-swap" : "mmh3-panel";
     const style = document.createElement("style");
     style.textContent = `
         .mmh3-panel{color-scheme:dark;margin-left:48px;width:calc(100% - 92px);height:100%;box-sizing:border-box;overflow:hidden;border:1px solid #33464c;border-radius:14px;background:#121c21;color:#e6efef;font:13px/1.5 system-ui,"Microsoft YaHei",sans-serif;display:flex;flex-direction:column}
@@ -20,6 +21,10 @@ export function createWorkbenchPanel(node, transport) {
     `;
     style.textContent += `
         .mmh3-preview{border:1px solid #365059;border-radius:10px;background:#0e171c;overflow:hidden}.mmh3-preview-frame{height:420px;display:flex;align-items:center;justify-content:center;color:#7e9ca5}.mmh3-preview-frame img,.mmh3-preview-frame video{width:100%;height:100%;object-fit:contain}.mmh3-preview-info{padding:10px 12px;border-top:1px solid #293e46;display:flex;gap:12px;align-items:center}.mmh3-preview-info span{font-size:12px;color:#9fbbc1;white-space:nowrap}.mmh3-preview-info progress{width:100%;height:8px;accent-color:#76c9b6}.mmh3-preview-empty{text-align:center;line-height:1.8;font-size:12px}
+    `;
+    style.textContent += `
+        .mmh3-person-swap .mmh3-thumb,.mmh3-person-swap .mmh3-card:has(video) .mmh3-thumb{height:auto;aspect-ratio:16/9;padding:10px;overflow:hidden}
+        .mmh3-person-swap .mmh3-thumb img,.mmh3-person-swap .mmh3-thumb video{width:100%;height:100%;min-height:0;object-fit:contain;border-radius:4px}
     `;
     root.append(style);
     const element = (tag, className, text) => {
@@ -45,7 +50,7 @@ export function createWorkbenchPanel(node, transport) {
         const choices = typeof widget.options?.values === "function" ? widget.options.values() : widget.options?.values;
         const control = element(choices ? "select" : name === "prompt" ? "textarea" : "input");
         if (choices) {
-            for (const value of choices) control.append(new Option(String(value), String(value)));
+            for (const value of choices) control.append(new Option(personSwap && name === "aspect_ratio" ? (String(value).startsWith("16:9") ? "横屏 · 16:9" : "竖屏 · 9:16") : String(value), String(value)));
         } else if (typeof widget.value === "boolean") {
             control.type = "checkbox";
         } else if (typeof widget.value === "number") {
@@ -70,7 +75,7 @@ export function createWorkbenchPanel(node, transport) {
     }
     const head = element("div", "mmh3-head");
     const brand = element("div");
-    brand.append(element("div", "mmh3-brand", "MiniMan H3"));
+    brand.append(element("div", "mmh3-brand", personSwap ? "H3 人物替换" : "MiniMan H3"));
     head.append(brand);
     root.append(head);
     const tabs = element("div", "mmh3-tabs");
@@ -95,9 +100,9 @@ export function createWorkbenchPanel(node, transport) {
     mediaActions.append(upload, choose);
     const status = element("div", "mmh3-status");
     media.append(mediaTabs, gallery, mediaActions, status);
-    const counts = {images: 9, videos: 3, audios: 3};
+    const counts = personSwap ? {videos: 1, images: 1} : {images: 9, videos: 3, audios: 3};
     const captions = {images: "图片", videos: "视频", audios: "音频"};
-    let activeMedia = "images";
+    let activeMedia = personSwap ? "videos" : "images";
     let files;
     const filename = item => typeof item === "string" ? item : item?.file;
     const saveFiles = () => set("reference_files", JSON.stringify(files));
@@ -110,11 +115,12 @@ export function createWorkbenchPanel(node, transport) {
     }
     const picker = element("input");
     picker.type = "file";
-    picker.multiple = true;
+    picker.multiple = !personSwap;
     picker.hidden = true;
     root.append(picker);
     let targetSlot = null;
-    function pickUpload(index = null) {
+    function pickUpload(index = null, group = activeMedia) {
+        activeMedia = group;
         targetSlot = index;
         picker.accept = activeMedia === "images" ? "image/*" : activeMedia === "videos" ? "video/*" : "audio/*";
         picker.value = "";
@@ -122,16 +128,22 @@ export function createWorkbenchPanel(node, transport) {
     }
     function putFile(group, name, index = null) {
         const value = group === "videos" ? {file: name, use_audio: false} : name;
-        if (index != null && index < files[group].length) files[group][index] = value;
+        if (personSwap) files[group] = [value];
+        else if (index != null && index < files[group].length) files[group][index] = value;
         else files[group].push(value);
         saveFiles();
     }
-    picker.addEventListener("change", async () => {
-        const group = activeMedia;
-        let slot = targetSlot;
+    async function uploadFiles(items, group, slot = null) {
         upload.disabled = true;
         try {
-            for (const file of picker.files) {
+            for (const file of items) {
+                const type = file.type.split("/")[0];
+                const inferred = type === "image" ? "images" : type === "video" ? "videos" : type === "audio" ? "audios"
+                    : /\.(png|jpe?g|webp|gif|bmp|avif)$/i.test(file.name) ? "images"
+                    : /\.(mp4|mov|webm|mkv|avi|m4v)$/i.test(file.name) ? "videos"
+                    : /\.(mp3|wav|flac|ogg|m4a|aac)$/i.test(file.name) ? "audios" : null;
+                const destination = group || inferred;
+                if (!destination || !Object.hasOwn(counts, destination)) throw new Error("请拖入支持的图片或视频素材");
                 status.textContent = `正在上传 ${file.name}…`;
                 const data = new FormData();
                 data.append("image", file);
@@ -139,7 +151,7 @@ export function createWorkbenchPanel(node, transport) {
                 const response = await transport.fetch("/upload/image", {method: "POST", body: data});
                 if (!response.ok) throw new Error(`上传失败（${response.status}）`);
                 const result = await response.json();
-                putFile(group, [result.subfolder, result.name].filter(Boolean).join("/"), slot);
+                putFile(destination, [result.subfolder, result.name].filter(Boolean).join("/"), slot);
                 slot = null;
             }
             status.textContent = "素材已保存到本机输入目录";
@@ -149,6 +161,17 @@ export function createWorkbenchPanel(node, transport) {
             upload.disabled = false;
             renderMedia();
         }
+    }
+    picker.addEventListener("change", () => uploadFiles(picker.files, activeMedia, targetSlot));
+    media.addEventListener("dragover", event => {
+        event.preventDefault();
+        event.stopPropagation();
+        event.dataTransfer.dropEffect = "copy";
+    });
+    media.addEventListener("drop", event => {
+        event.preventDefault();
+        event.stopPropagation();
+        if (!upload.disabled && event.dataTransfer.files.length) uploadFiles(event.dataTransfer.files, null);
     });
     upload.addEventListener("click", () => pickUpload());
     choose.addEventListener("click", async () => {
@@ -189,21 +212,22 @@ export function createWorkbenchPanel(node, transport) {
     });
     function renderMedia() {
         gallery.replaceChildren();
-        gallery.className = `mmh3-gallery ${activeMedia === "images" ? "" : activeMedia === "videos" ? "video" : "audio"}`;
+        gallery.className = `mmh3-gallery ${personSwap ? "video" : activeMedia === "images" ? "" : activeMedia === "videos" ? "video" : "audio"}`;
         for (const [group, button] of mediaButtons) {
             button.textContent = `${captions[group]} ${files[group].length}/${counts[group]}`;
             button.classList.toggle("active", group === activeMedia);
         }
-        const items = files[activeMedia];
-        for (let index = 0; index < Math.max(counts[activeMedia], items.length); index++) {
+        for (const group of personSwap ? ["videos", "images"] : [activeMedia]) {
+        const items = files[group];
+        for (let index = 0; index < Math.max(counts[group], items.length); index++) {
             const item = items[index];
             const name = filename(item);
             const card = element("div", "mmh3-card");
             const thumb = element("div", "mmh3-thumb");
             if (name) {
-                const view = element(activeMedia === "images" ? "img" : activeMedia === "videos" ? "video" : "audio");
+                const view = element(group === "images" ? "img" : group === "videos" ? "video" : "audio");
                 view.src = transport.view(name);
-                if (activeMedia === "images") view.alt = `参考图 ${index + 1}`;
+                if (group === "images") view.alt = `参考图 ${index + 1}`;
                 else { view.controls = true; view.preload = "metadata"; }
                 thumb.append(view);
                 const remove = element("button", "mmh3-remove", "×");
@@ -213,10 +237,10 @@ export function createWorkbenchPanel(node, transport) {
             } else {
                 thumb.append(element("span", "mmh3-empty", "+"));
                 thumb.title = "上传参考素材";
-                thumb.addEventListener("click", () => pickUpload(index));
+                thumb.addEventListener("click", () => pickUpload(index, group));
             }
-            card.append(thumb, element("div", "mmh3-card-info", name || `${captions[activeMedia]} ${index + 1} · 点击上传`));
-            if (name && activeMedia === "videos") {
+            card.append(thumb, element("div", "mmh3-card-info", name || `${captions[group]} ${index + 1} · 点击上传`));
+            if (name && group === "videos" && !personSwap) {
                 const label = element("label", "mmh3-switch");
                 label.style.padding = "5px 9px 10px";
                 const toggle = element("input");
@@ -227,6 +251,7 @@ export function createWorkbenchPanel(node, transport) {
                 card.append(label);
             }
             gallery.append(card);
+        }
         }
     }
     const pages = new Map();
@@ -253,15 +278,15 @@ export function createWorkbenchPanel(node, transport) {
     prompt.firstChild.remove();
     create.append(prompt);
     const basics = element("div", "mmh3-grid mmh3-group");
-    for (const [name, label] of [["seconds", "生成时长 · 秒"], ["aspect_ratio", "画面比例"]]) {
-        if (widgets.has(name)) basics.append(field(name, label));
+    for (const [name, label] of [["seconds", "生成时长 · 秒"], ["aspect_ratio", personSwap ? "横竖屏" : "画面比例"]]) {
+        if (!personSwap && widgets.has(name)) basics.append(field(name, label));
     }
-    create.append(basics);
+    if (!personSwap) create.append(basics);
     const sampling = pages.get("sampling");
     sectionTitle(sampling, "采样开关与步数", "仅计算已启用阶段的步数");
     const stages = element("div", "mmh3-stages");
     const stageCards = new Map();
-    for (const [id, label, description] of [["first", "01 · 一采", "基础内容"], ["second", "02 · 二采", "放大细化"], ["third", "03 · 三采", "最终细化"]]) {
+    for (const [id, label, description] of [["first", "01 · 一采", personSwap ? "人物替换" : "基础内容"], ["second", "02 · 二采", "放大细化"], ["third", "03 · 三采", "最终细化"]].filter(([id]) => widgets.has(`${id}_steps`))) {
         const card = element("div", "mmh3-stage");
         stageCards.set(id, card);
         const heading = element("div", "mmh3-stage-header");
@@ -275,7 +300,8 @@ export function createWorkbenchPanel(node, transport) {
         card.append(heading, element("div", "mmh3-sub", description), field(`${id}_steps`, "采样步数"), field(`${id}_mp`, "目标分辨率 · MP"));
         stages.append(card);
     }
-    sampling.append(stages, element("div", "mmh3-note", "关闭二采时，三采直接接一采结果。关闭的阶段不会执行放大和采样。"));
+    sampling.append(stages);
+    if (!personSwap) sampling.append(element("div", "mmh3-note", "关闭二采时，三采直接接一采结果。关闭的阶段不会执行放大和采样。"));
     const previewHeading = sectionTitle(create, "采样预览", "ComfyUI 原生实时预览");
     const preview = element("div", "mmh3-preview");
     const previewFrame = element("div", "mmh3-preview-frame");
@@ -303,14 +329,16 @@ export function createWorkbenchPanel(node, transport) {
     output.style.marginTop = "20px";
     output.append(field("filename_prefix", "成片保存前缀"));
     pages.get("advanced").append(output);
-    sectionTitle(pages.get("models"), "模型与编码器", "沿用原三采工作流");
-    for (const [name, label] of [["first_model", "一、二采 · FastH3 主模型"], ["third_model", "三采 · 独立 H3 主模型"], ["clip_name", "文本编码器"], ["video_vae", "视频 VAE"], ["audio_vae", "音频 VAE"], ["upscale_model", "潜空间放大模型"]]) {
+    sectionTitle(pages.get("models"), "模型与编码器", "");
+    for (const [name, label] of [["sam_model", "SAM3 人物分割模型"], ["first_model", personSwap ? "人物替换主模型" : "一、二采 · FastH3 主模型"], ["third_model", "三采 · 独立 H3 主模型"], ["clip_name", "文本编码器"], ["video_vae", "视频 VAE"], ["audio_vae", "音频 VAE"], ["upscale_model", "潜空间放大模型"]]) {
+        if (!widgets.has(name)) continue;
         const row = field(name, label);
         row.classList.add("mmh3-group");
         pages.get("models").append(row);
     }
-    sectionTitle(pages.get("loras"), "三采 LoRA", "选择 None 或强度 0 可禁用");
-    for (const [name, label] of [["combat", "动作与战斗"], ["hybrid", "混合加速 · Bypass"], ["eros", "Turbo 加速"], ["motion", "动作修复"], ["lms", "LMS"], ["cinema", "电影质感"]]) {
+    sectionTitle(pages.get("loras"), personSwap ? "人物替换与三采 LoRA" : "三采 LoRA", "选择 None 或强度 0 可禁用");
+    for (const [name, label] of [...(personSwap ? [["swap", "一、二采 LoRA"]] : []), ["combat", "三采 · 动作与战斗"], ["hybrid", "混合加速 · Bypass"], ["eros", "Turbo 加速"], ["motion", "动作修复"], ["lms", "LMS"], ["cinema", "电影质感"]]) {
+        if (!widgets.has(`lora_${name}`) || !widgets.has(`strength_${name}`)) continue;
         const card = element("div", "mmh3-lora");
         sectionTitle(card, label, "");
         const grid = element("div", "mmh3-lora-grid");
@@ -320,7 +348,7 @@ export function createWorkbenchPanel(node, transport) {
     }
     sectionTitle(pages.get("advanced"), "采样与性能", "更小的 FFN 分块通常更省显存");
     const advanced = element("div", "mmh3-grid");
-    for (const [name, label] of [["seed", "随机种子"], ["control_after_generate", "运行后种子"], ["sampler_name", "采样算法"], ["scheduler", "调度算法"], ["attention", "注意力后端"], ["sparse_attention", "启用 VSA 稀疏注意力"], ["keep_percent", "VSA 保留比例"], ["chunk_tokens", "FFN 分块 Token"], ["shift_video", "视频 Sigma Shift"], ["shift_audio", "音频 Sigma Shift"], ["upscale_device", "放大设备"], ["upscale_precision", "放大精度"], ["audio_rate", "音频速度"], ["crf", "视频 CRF"]]) advanced.append(field(name, label));
+    for (const [name, label] of [["seed", "随机种子"], ["control_after_generate", "运行后种子"], ["sampler_name", "采样算法"], ["scheduler", "调度算法"], ["attention", "注意力后端"], ["sparse_attention", "启用 VSA 稀疏注意力"], ["keep_percent", "VSA 保留比例"], ["chunk_tokens", "FFN 分块 Token"], ["shift_video", "视频 Sigma Shift"], ["shift_audio", "音频 Sigma Shift"], ["upscale_device", "放大设备"], ["upscale_precision", "放大精度"], ["audio_rate", "音频速度"], ["crf", "视频 CRF"]]) if (widgets.has(name)) advanced.append(field(name, label));
     pages.get("advanced").append(advanced);
     function updateSamplingControls() {
         for (const id of ["second", "third"]) {
@@ -332,7 +360,8 @@ export function createWorkbenchPanel(node, transport) {
         }
     }
     function sync() {
-        files = JSON.parse(get("reference_files") || '{"images":[],"videos":[],"audios":[]}');
+        const parsed = JSON.parse(get("reference_files") || '{"images":[],"videos":[],"audios":[]}');
+        files = parsed && typeof parsed === "object" && !Array.isArray(parsed) ? parsed : {images: [], videos: [], audios: []};
         for (const group of Object.keys(counts)) files[group] ||= [];
         for (const {control, read} of boundControls) if (document.activeElement !== control) read();
         renderMedia();
