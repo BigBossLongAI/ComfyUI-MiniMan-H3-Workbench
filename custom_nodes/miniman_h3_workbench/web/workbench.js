@@ -92,7 +92,10 @@ app.registerExtension({
                 previewFrames = [];
                 displayIndex = 0;
             };
-            const matches = id => id != null && (String(id) === String(this.id) || String(id).startsWith(`${this.id}.`));
+            const activeGraph = () => this.graph === app.graph;
+            const matches = id => activeGraph() && id != null && (String(id) === String(this.id) || String(id).startsWith(`${this.id}.`));
+            let ownsRun = false;
+            const executionStart = () => { ownsRun = activeGraph(); };
             const stageLabel = id => {
                 const name = String(id || "");
                 if (name.endsWith("first_sample")) return "一采";
@@ -184,15 +187,17 @@ app.registerExtension({
             };
             const onExecuted = this.onExecuted;
             this.onExecuted = function (output) {
+                if (!activeGraph() || !ownsRun) return;
                 if (showOutput(output)) return;
                 return onExecuted?.apply(this, arguments);
             };
             const executed = event => {
                 const data = event.detail;
-                if (!matches(data.node) && !matches(data.display_node)) return;
+                if (!ownsRun || (!matches(data.node) && !matches(data.display_node))) return;
                 showOutput(data.output);
             };
             api.addEventListener("executing", executing);
+            api.addEventListener("execution_start", executionStart);
             api.addEventListener("b_preview_with_metadata", metadataPreview);
             api.addEventListener("miniman_h3_preview", binaryPreview);
             api.addEventListener("VHS_latentpreview", animatePreview);
@@ -202,6 +207,7 @@ app.registerExtension({
             const removed = this.onRemoved;
             this.onRemoved = function () {
                 api.removeEventListener("executing", executing);
+                api.removeEventListener("execution_start", executionStart);
                 api.removeEventListener("b_preview_with_metadata", metadataPreview);
                 api.removeEventListener("miniman_h3_preview", binaryPreview);
                 api.removeEventListener("VHS_latentpreview", animatePreview);
@@ -253,7 +259,6 @@ app.registerExtension({
             const draw = this.onDrawForeground;
             this.onDrawForeground = function () {
                 layoutReferenceInputs();
-                if (!this.properties?.minimanFinalVideo) showOutput(app.nodeOutputs?.[this.id]);
                 this.imgs = null;
                 const value = draw?.apply(this, arguments);
                 hideWidgets();
