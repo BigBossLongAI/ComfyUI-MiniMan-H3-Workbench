@@ -9,13 +9,13 @@ custom_nodes/
   miniman_h3_workbench/        工作台节点与前端
   h3-memory-guard/             FFN 分块节点
 third_party/                  三个依赖插件的源码与原许可证
-workflows/                    无私人素材的工作台工作流
+workflows/                    工作台示例工作流
 DOWNLOADS.md                  模型和 LoRA 下载来源
 MODELS.json                   文件名、大小、哈希与下载链接
 SOURCES.md                    来源与作者标注
 ```
 
-源码已展开，可直接在线查看、克隆或提交修改。独立插件 ZIP 和完整安装包位于 [Releases 下载区](https://github.com/aaaa13777727839/ComfyUI-MiniMan-H3-Workbench/releases/latest)。
+源码已展开，可直接在线查看、克隆或提交修改。独立插件 ZIP 和完整安装包位于 [Releases 下载区](https://github.com/BigBossLongAI/ComfyUI-MiniMan-H3-Workbench/releases/latest)。
 
 ## 下载与安装
 
