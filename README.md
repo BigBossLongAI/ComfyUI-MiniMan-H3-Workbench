@@ -58,3 +58,9 @@ SOURCES.md                    来源与作者标注
 模型、编码器、VAE 及放大模型的提供方和放置目录见 [MODELS.json](MODELS.json)，插件来源见 [SOURCES.md](SOURCES.md)。LMS 和电影质感通用版已通过 SHA-256 核实，分别由 Alissonerdx 和 orangesouth 提供对应文件下载。
 
 完整的 12 个模型与 LoRA 下载直链、提供方、文件重命名说明及安装目录见 [DOWNLOADS.md](DOWNLOADS.md)。6 个 LoRA 已逐一通过 SHA-256 与上游对照；无需把来源不明的其他版本当作同一文件。
+
+## 人物替换工作台
+
+打开 `workflows/H3-Person-Swap-Workbench.json`，拖入一个原视频和一张人物参考图，并填写提示词。时长和比例跟随原视频，保留原视频声音。一、二采共用主模型和 LoRA，三采使用独立主模型和六组 LoRA；高级设置可调整 FFN 分块。需要支持 SAM3 的新版 ComfyUI，以及 `sam3.1_multiplex_fp16.safetensors` 人物分割模型。
+
+v0.1.3 修复两个工作台保存后参数恢复旧值的问题，并支持素材区拖放上传。更新插件后重启 ComfyUI，再刷新页面。
