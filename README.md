@@ -2,13 +2,30 @@
 
 基于用户提供的 `(AAA)MiniManH3（三采）` 工作流制作的独立 ComfyUI 工作台。默认大小沿用最后保存的 **1158.83 × 1088.56**。
 
+## 仓库目录
+
+```text
+custom_nodes/
+  miniman_h3_workbench/        工作台节点与前端
+  h3-memory-guard/             FFN 分块节点
+third_party/                  三个依赖插件的源码与原许可证
+workflows/                    无私人素材的工作台工作流
+DOWNLOADS.md                  模型和 LoRA 下载来源
+MODELS.json                   文件名、大小、哈希与下载链接
+SOURCES.md                    来源与作者标注
+```
+
+源码已展开，可直接在线查看、克隆或提交修改。独立插件 ZIP 和完整安装包位于 [Releases 下载区](https://github.com/aaaa13777727839/ComfyUI-MiniMan-H3-Workbench/releases/latest)。
+
 ## 下载与安装
 
-1. 下载并解压 [源码与插件包](MiniMan-H3-source-release.zip)。插件源代码、原始许可证和工作流均在压缩包内。
-2. 将包内 `custom_nodes/miniman_h3_workbench` 和 `custom_nodes/h3-memory-guard` 复制到 ComfyUI 的 `custom_nodes` 目录。
-3. 将 `third_party` 下的 VideoHelperSuite、Latent Upscaler、Audio Separation Nodes 各目录复制到 `custom_nodes`，按各插件说明安装依赖。
-4. 另外安装 [Memory Cleanup](https://github.com/LAOGOU-666/Comfyui-Memory_Cleanup)。该插件没有核实到分发许可证，因此此包只提供来源链接。
-5. 根据 [模型清单](MODELS.json) 安装模型和 LoRA，然后重启 ComfyUI，打开 [工作台工作流](MiniMan-H3-Workbench.json)。压缩包中另有 `workflows/MiniMan-H3-Workbench.json`。
+1. 使用 Git 克隆此仓库，或在仓库的 Code 菜单选择 Download ZIP。
+2. 将 `custom_nodes/miniman_h3_workbench` 和 `custom_nodes/h3-memory-guard` 两个目录复制到你的 `ComfyUI/custom_nodes`。
+3. 将 `third_party` 下的 VideoHelperSuite、Latent Upscaler、Audio Separation Nodes 各目录复制到 `ComfyUI/custom_nodes`，按插件 README 安装依赖。已有这些插件时使用已有安装，避免重复注册。
+4. 另外安装 [LAOGOU-666 / Memory Cleanup](https://github.com/LAOGOU-666/Comfyui-Memory_Cleanup)。其分发许可证未核实，因此此仓库保留来源链接。
+5. 按 [DOWNLOADS.md](DOWNLOADS.md) 下载并放置模型与 LoRA。重启 ComfyUI，打开 [workflows/MiniMan-H3-Workbench.json](workflows/MiniMan-H3-Workbench.json)。
+
+模型权重单独遵循原发布方许可，不包含在源码仓库或安装包内。
 
 ## 功能
 

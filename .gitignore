@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+*.safetensors
+*.mp4
+*.wav
+LOCAL-INVENTORY.json
