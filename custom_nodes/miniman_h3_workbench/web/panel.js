@@ -279,7 +279,7 @@ export function createWorkbenchPanel(node, transport) {
     const previewHeading = sectionTitle(create, "采样预览", "ComfyUI 原生实时预览");
     const preview = element("div", "mmh3-preview");
     const previewFrame = element("div", "mmh3-preview-frame");
-    const previewEmpty = element("div", "mmh3-preview-empty", "等待采样画面\n开启 ComfyUI 原生预览后，显示当前阶段画面");
+    const previewEmpty = element("div", "mmh3-preview-empty", "等待采样画面");
     previewEmpty.style.whiteSpace = "pre-line";
     const previewImage = element("img");
     previewImage.alt = "H3 实时采样预览";
